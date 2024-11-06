@@ -1,0 +1,25 @@
+---
+interface Link {
+  name: string;
+  href: string;
+}
+
+const NavLinks: Link[] = [
+  { name: "Home", href: "/" },
+  { name: "Int. Simple", href: "/interes-simple" },
+  { name: "Int. Compuesto", href: "/interes-compuesto" },
+];
+---
+
+<header class="h-14 bg-zinc-950 flex justify-center md:justify-around items-center">
+  <h2 class="text-white font-bold">Financial calculator</h2>
+  <nav class=" hidden gap-4 md:flex">
+    {
+      NavLinks.map((link) => (
+        <a href={link.href} class="text-white hover:text-rose-600">
+          {link.name}
+        </a>
+      ))
+    }
+  </nav>
+</header>

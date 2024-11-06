@@ -1,0 +1,27 @@
+---
+interface Link {
+  name: string;
+  href: string;
+}
+
+const NavLinks: Link[] = [
+  { name: "Home", href: "/" },
+  { name: "Int. Simple", href: "/interes-simple" },
+  { name: "Int. Compuesto", href: "/interes-compuesto" },
+];
+---
+
+<nav
+  class="gap-4 justify-between items-center h-14 bg-zinc-800 flex md:hidden px-4 sticky inset-x-0 bottom-0"
+>
+  {
+    NavLinks.map((link) => (
+      <a
+        href={link.href}
+        class="text-white hover:text-rose-600 flex flex-col justify-center items-center"
+      >
+        {link.name}
+      </a>
+    ))
+  }
+</nav>

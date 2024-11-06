@@ -1,24 +1,36 @@
 ---
+import Footer from "@components/global/footer.astro";
+import Header from "@components/global/header.astro";
+import NavMobile from "@components/global/navMobile.astro";
+
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
 ---
 
-<!doctype html>
+<script
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2964007773702778"
+  crossorigin="anonymous"></script>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+	<!-- ads -->
+    <meta name="google-adsense-account" content="ca-pub-2964007773702778" />
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+    <NavMobile />
+  </body>
 </html>
 
 <!-- <style is:global>
