@@ -1,15 +1,85 @@
 ---
+import Card from "@components/Card.astro";
 import Layout from "@layout/Layout.astro";
+import { Icon } from "astro-icon/components";
 
-import IntSimple from "@components/intSimple.astro";
+interface Card {
+  id: number;
+  title: string;
+  description: string;
+  link: string;
+}
+
+const CardInfo: Card[] = [
+  {
+    id: 1,
+    title: "Interes Simple",
+    description:
+      "Herramienta sencilla y minimalista para calcular el interés simple de manera rápida y precisa.",
+    link: "/interes-simple",
+  },
+  {
+    id: 2,
+    title: "Interes Compuesto",
+    description:
+      "Calculadora fácil de usar para obtener el interés compuesto, ideal para visualizar el crecimiento de inversiones a lo largo del tiempo",
+    link: "/interes-compuesto",
+  },
+];
 ---
 
 <Layout title="Calculadora Financiera">
-  <section class="md:px-32  py-4 md:py-16 flex flex-col justify-center items-center">
-    <h2 class="text-xl text-rose-600 py-4 font-bold">
-      Calculadora finaciera con Astro
-    </h2>
+  <section class="md:px-32 py-4 flex flex-col justify-center items-center">
+    <div
+      class="w-4/5 md:w-3/5 flex flex-col justify-center items-center px-2 py-6 gap-4"
+    >
+      <h2 class="text-3xl text-rose-600 font-bold">Financial Calculator</h2>
+      <p class="text-center">
+        Es un proyecto de multiples calculadoras de código abierto diseñada para
+        facilitar y agilizar cálculos financieros, especialmente útil para
+        estudiantes y profesionales en finanzas, administración entre otros. El
+        proyecto ofrece una interfaz minimalista y sencilla de usar, con
+        herramientas específicas como calculadoras de interés simple y
+        compuesto, creadas inicialmente para apoyar actividades académicas en el
+        curso de "Matemáticas para las Finanzas".
+      </p>
+      <p class="text-center">
+        A medida que el curso avance, el proyecto se expandirá para incluir más
+        herramientas de cálculo financiero que resuelvan necesidades académicas
+        y profesionales. Al ser de código abierto, está disponible para que
+        otros desarrolladores y estudiantes contribuyan, personalicen y utilicen
+        estas herramientas en sus propios proyectos.
+      </p>
+    </div>
 
-    <IntSimple />
+    <div
+      class="w-full flex flex-col gap-4 md:flex-wrap md:flex-row items-center justify-center md:justify-around"
+    >
+      {
+        CardInfo.map((card) => (
+          <div class="bg-white w-[300px] rounded-[30px] flex flex-col justify-center hover:shadow-lg min-h-[280px] dark:bg-zinc-950 dark:text-white items-start relative group">
+            <div class="m-5">
+              <div class="w-12 h-12 flex items-center justify-center absolute inset-x-0 top-0 ml-6 mt-6">
+                <Icon name="mdi:calculator-variant" class="h-20 w-20" />
+              </div>
+
+              <div class="mt-4 text-left w-full mb-3">
+                <h2 class="text-2xl roboto-mono-500 text-gray-800 dark:text-white">
+                  {card.title}
+                </h2>
+                <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
+                  {card.description}
+                </p>
+              </div>
+              <a href={card.link} aria-label={card.title}>
+                <div class="bg-gray-300 dark:bg-red-700 w-10 h-10 rounded-full absolute bottom-0 left-0 m-4 flex justify-center items-center hover:ring-4 ring-gray-200 dark:ring-gray-400 hover:transition duration-700 ease-in-out">
+                  <Icon name="mdi:arrow-right-bold" class="h-6 w-6" />
+                </div>
+              </a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
   </section>
 </Layout>

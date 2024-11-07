@@ -1,0 +1,115 @@
+---
+import { Icon } from "astro-icon/components";
+import Card from "./Card.astro";
+---
+
+<Card>
+  <form
+    id="calculo-form"
+    action=""
+    class="w-full flex flex-col items-center gap-4 px-4 py-6 md:py-9"
+  >
+    <label for="capital" class="w-4/5 flex flex-col">
+      Capital
+      <input
+        type="number"
+        name="capital"
+        id="capital"
+        class="border pl-2 border-neutral-600 rounded-lg"
+        required
+      />
+    </label>
+    <label for="interes_anual" class="w-4/5 flex flex-col">
+      Tasa de interés anual (%)
+      <input
+        type="number"
+        name="interes_anual"
+        id="interes_anual"
+        class="border pl-2 border-neutral-600 rounded-lg"
+        required
+      />
+    </label>
+    <label for="tiempo" class="w-4/5 flex flex-col">
+      Tiempo en años
+      <input
+        type="number"
+        name="tiempo"
+        id="tiempo"
+        class="border pl-2 border-neutral-600 rounded-lg"
+        required
+      />
+    </label>
+    <button type="submit" class="bg-red-600 rounded-md text-white w-32 h-10"
+      >Calcular</button
+    >
+  </form>
+
+  <div class="flex justify-around gap-6 py-4">
+    <!-- Contenedor para mostrar el interés compuesto -->
+    <div class="flex flex-col items-center">
+      <p class="mx-4 text-lg font-semibold">
+        Interés compuesto: <span id="resultado"></span>
+      </p>
+      <button
+        class="btn"
+        data-clipboard-action="copy"
+        data-clipboard-target="#resultado"
+      >
+        <Icon name="mdi:clipboard-multiple-outline" /></button
+      >
+    </div>
+    <div class="flex flex-col items-center">
+      <p class="mx-4 text-lg font-semibold">
+        Total acumulado: <span id="resultado_acumulado"></span>
+      </p>
+      <button
+        class="btn"
+        data-clipboard-action="copy"
+        data-clipboard-target="#resultado_acumulado"
+      >
+        <Icon name="mdi:clipboard-multiple-outline" /></button
+      >
+    </div>
+  </div>
+</Card>
+
+<script is:inline>
+  document
+    .querySelector("#calculo-form")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const capital = Number(document.querySelector("#capital").value);
+      const interes_anual =
+        Number(document.querySelector("#interes_anual").value) / 100;
+      const tiempo = Number(document.querySelector("#tiempo").value);
+
+      if (capital > 0 && interes_anual > 0 && tiempo > 0) {
+        // Calcula el interés compuesto
+        const total_acumulado = capital * Math.pow(1 + interes_anual, tiempo);
+        const interes_compuesto = total_acumulado - capital;
+
+        // Muestra el resultado en la UI
+        document.querySelector("#resultado").textContent =
+          ` ${interes_compuesto.toFixed(2)}`;
+
+        document.querySelector("#resultado_acumulado").textContent =
+          `${total_acumulado.toFixed(2)}`;
+      } else {
+        document.querySelector("#resultado").textContent =
+          "Por favor, ingresa valores válidos en todos los campos.";
+      }
+    });
+
+  // Configuración de ClipboardJS para copiar texto
+  const clipboard = new ClipboardJS(".btn");
+
+  clipboard.on("success", function (e) {
+    console.info("Texto copiado con éxito:", e.text);
+    e.clearSelection();
+  });
+
+  clipboard.on("error", function (e) {
+    console.error("Error al copiar:", e);
+  });
+</script>

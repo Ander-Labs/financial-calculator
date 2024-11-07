@@ -1,8 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
 
-
-
 interface Link {
   name: string;
   href: string;
@@ -27,7 +25,7 @@ const NavLinks: Link[] = [
 <header
   class="h-16 bg-zinc-950 flex justify-center md:justify-around items-center"
 >
-  <h2 class="text-white font-bold">Financial calculator</h2>
+  <h2 class="text-white font-bold text-xl"><a href="/"> Financial calculator</a></h2>
   <nav class="hidden gap-4 md:flex">
     {
       NavLinks.map((link) => (

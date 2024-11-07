@@ -1,7 +1,56 @@
 ---
 const year = new Date().getFullYear();
+
+interface Link {
+  id: number;
+  title: string;
+  link: string;
+}
+
+const Nav: Link[] = [
+  {
+    id: 1,
+    title: "Home |",
+    link: "/",
+  },
+  {
+    id: 2,
+    title: " About |",
+    link: "/about",
+  },
+  {
+    id: 3,
+    title: " Política de privacidad |",
+    link: "/politicas-de-privacidad",
+  },
+  {
+    id: 4,
+    title: " Condiciones de uso",
+    link: "/condiciones-de-uso",
+  },
+];
 ---
 
-<footer class="h-16 bg-slate-950 text-white flex justify-center items-center">
-  <p>&copy; All rights reserved {year}. Ander-Labs</p>
+<footer
+  class="bg-slate-950 text-white flex flex-col justify-center items-center gap-3 text-center text-sm py-4"
+>
+  <p>
+    &copy; All rights reserved {year}. Sitio desarrollado por <a
+      href="http://www.ander-labs.site"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-rose-700"
+    >
+      Ander-Labs</a
+    >
+  </p>
+  <nav class="pb-4">
+    {
+      Nav.map((link) => (
+        <a href={link.link} title={link.title}>
+          {link.title}
+        </a>
+      ))
+    }
+  </nav>
 </footer>

@@ -1,0 +1,40 @@
+---
+import Layout from "@layout/Layout.astro";
+
+const title: string = "About | Financial Calculator";
+const p1: string =
+  "Es un proyecto de multiples calculadoras de código abierto diseñada para facilitar y agilizar cálculos financieros, especialmente útil para estudiantes y profesionales en finanzas, administraci entre otros. El proyecto ofrece una interfaz minimalista y sencilla  usar, con herramientas específicas como calculadoras de inter simple y compuesto, creadas inicialmente para apoyar actividades académicas  el curso de Matemáticas para las Finanzas.";
+const p2: string =
+  "A medida que el curso avance, el proyecto se expandirá para incluir más herramientas de cálculo financiero que resuelvannecesidade académicas y profesionales. Al ser de código abierto, está disponiblepar que otros desarrolladores y estudiantes contribuyan, personalice y utilicen estas herramientas en sus propios proyectos.";
+---
+
+<Layout title={title}>
+  <section
+    class="h-screen px-2 md:px-32 md:py-40 mt-10 py-4 flex flex-col justify-center items-center"
+  >
+    <div class="">
+      <h2 class="text-3xl text-rose-700 font-bold">
+        Sobre Financial Calculator
+      </h2>
+    </div>
+    <div
+      class="w-4/5 md:w-3/5 flex flex-col justify-center items-center px-2 py-6 gap-4"
+    >
+      <p class="text-center">
+        {p1}
+      </p>
+      <p class="text-center">
+        {p2}
+      </p>
+      <p class="text-center">
+        Lea las páginas de <a
+          href="/condiciones-de-uso"
+          class="text-rose-700 font-semibold">Condiciones de uso</a
+        > y
+        <a href="/politicas-de-privacidad" class="text-rose-700 font-semibold">
+          Política de privacidad .</a
+        >
+      </p>
+    </div>
+  </section>
+</Layout>

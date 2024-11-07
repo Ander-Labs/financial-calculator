@@ -1,0 +1,30 @@
+---
+import Layout from "@layout/Layout.astro";
+
+const title: string = "Condiciones de Uso";
+const description: string = "Financial Calculator";
+---
+
+<Layout title={title}>
+  <section class="h-screen flex flex-col justify-center items-center">
+    <div
+      class="w-4/5 md:w-3/5 flex flex-col justify-center items-center px-2 py-6 gap-4"
+    >
+      <h2 class="text-3xl text-rose-700 font-bold">
+        Condiciones de uso / descargo de responsabilidad
+      </h2>
+      <p >
+        La información y las herramientas de este sitio web se proporcionan TAL
+        CUAL, SIN NINGUNA GARANTÍA DE NINGÚN TIPO.
+      </p>
+      <p >
+        Financial Calculator y sus colaboradores no serán responsables de ningún
+        daño o pérdida que resulte del uso del contenido o las herramientas de
+        este sitio web. Financial Calculator utiliza cookies como se especifica
+        en la política de privacidad . Al utilizar este sitio web, acepta el uso
+        de cookies. El uso de este sitio web significa que acepta los Términos
+        de uso. Estos Términos de uso pueden cambiar de vez en cuando.
+      </p>
+    </div>
+  </section>
+</Layout>
