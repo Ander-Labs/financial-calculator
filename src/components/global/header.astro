@@ -1,22 +1,42 @@
 ---
+import { Icon } from "astro-icon/components";
+
+
+
 interface Link {
   name: string;
   href: string;
+  icon: string;
 }
 
 const NavLinks: Link[] = [
-  { name: "Home", href: "/" },
-  { name: "Int. Simple", href: "/interes-simple" },
-  { name: "Int. Compuesto", href: "/interes-compuesto" },
+  { name: "Home", href: "/", icon: "mdi:home" },
+  {
+    name: "Simple",
+    href: "/interes-simple",
+    icon: "mdi:calculator-variant-outline",
+  },
+  {
+    name: "Compuesto",
+    href: "/interes-compuesto",
+    icon: "mdi:calculator-variant-outline",
+  },
 ];
 ---
 
-<header class="h-14 bg-zinc-950 flex justify-center md:justify-around items-center">
+<header
+  class="h-16 bg-zinc-950 flex justify-center md:justify-around items-center"
+>
   <h2 class="text-white font-bold">Financial calculator</h2>
-  <nav class=" hidden gap-4 md:flex">
+  <nav class="hidden gap-4 md:flex">
     {
       NavLinks.map((link) => (
-        <a href={link.href} class="text-white hover:text-rose-600">
+        <a
+          href={link.href}
+          class="text-white hover:text-rose-600 flex items-center gap-2 "
+        >
+          <Icon name={link.icon} class={"w-5 h-5"} />
+
           {link.name}
         </a>
       ))
