@@ -74,6 +74,13 @@ import Card from "./Card.astro";
 </Card>
 
 <script is:inline>
+  // Función para calcular el interés compuesto
+  function calcularInteresCompuesto(capital, tasa, tiempo) {
+    const total_acumulado = capital * Math.pow(1 + tasa, tiempo);
+    const interes_compuesto = total_acumulado - capital;
+    return { total_acumulado, interes_compuesto };
+  }
+
   document
     .querySelector("#calculo-form")
     .addEventListener("submit", function (event) {
@@ -85,14 +92,16 @@ import Card from "./Card.astro";
       const tiempo = Number(document.querySelector("#tiempo").value);
 
       if (capital > 0 && interes_anual > 0 && tiempo > 0) {
-        // Calcula el interés compuesto
-        const total_acumulado = capital * Math.pow(1 + interes_anual, tiempo);
-        const interes_compuesto = total_acumulado - capital;
+        // Llamada a la función de cálculo
+        const { total_acumulado, interes_compuesto } = calcularInteresCompuesto(
+          capital,
+          interes_anual,
+          tiempo
+        );
 
         // Muestra el resultado en la UI
         document.querySelector("#resultado").textContent =
           ` ${interes_compuesto.toFixed(2)}`;
-
         document.querySelector("#resultado_acumulado").textContent =
           `${total_acumulado.toFixed(2)}`;
       } else {
